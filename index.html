@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Productos</title>
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ 
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  
+
+</head>
+<body id="a">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Gestión de Productos</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Operaciones
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#" onclick="mostrarFormularioCrear()">Crear Producto</a>
+            <a class="dropdown-item" href="#" onclick="mostrarListado()">Listar Productos</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-4" >
+    <div id="productForm" style="display: none;">
+      <h2>Crear Producto</h2>
+      <form>
+        <div class="form-group">
+          <label for="productName">Nombre del Producto</label>
+          <input type="text" class="form-control" id="productName" required>
+        </div>
+        <div class="form-group">
+          <label for="productPrice">Precio</label>
+          <input type="number" class="form-control" id="productPrice" required>
+        </div>
+        <div class="form-group">
+          <label for="productQuantity">Cantidad</label>
+          <input type="number" class="form-control" id="productQuantity" required>
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="agregarProducto(event)">Guardar Producto</button>
+      </form>
+    </div>
+
+    <div id="productTable" style="display: none;">
+      <h2>Listado de Productos</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="productTableBody">
+          <!-- Aquí se insertarán las filas de productos dinámicamente -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal de Edición de Producto -->
+  <div class="modal fade" id="editProductModal" tabindex="-1" role="dialog" aria-labelledby="editProductModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editProductModalLabel">Editar Producto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="editProductName">Nombre del Producto</label>
+              <input type="text" class="form-control" id="editProductName" required>
+            </div>
+            <div class="form-group">
+              <label for="editProductPrice">Precio</label>
+              <input type="number" class="form-control" id="editProductPrice" required>
+            </div>
+            <div class="form-group">
+              <label for="editProductQuantity">Cantidad</label>
+              <input type="number" class="form-control" id="editProductQuantity" required>
+            </div>
+            <input type="hidden" id="editProductIndex">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" onclick="guardarCambios()">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
